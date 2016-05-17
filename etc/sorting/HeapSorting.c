@@ -28,7 +28,7 @@ void printList(const HEAP* heap);
 
 int main()
 {
-	//Heap �� ù ��° ���� ���� �ʴ� ���̱⿡ 0���� �ʱ�ȭ �Ͽ����ϴ�.
+	//Heap 의 첫 번째 값은 쓰지 않는 값이기에 0으로 초기화 하였습니다.
 	HEAP heap[HEAP_LEN] =
 	{
 		{0		, 0},
@@ -52,12 +52,12 @@ int main()
 		{37		, 18},
 		{13		, 19}
 	};
-	printf("============���� ��===========\n");
+	printf("============정렬 전===========\n");
 	printList(heap);
 	heapSort(heap);
-	printf("============���� ��===========\n");
+	printf("============정렬 후===========\n");
 	printList(heap);
-	printf("�ڵ� ���� ���� Enter �Է�\n");
+	printf("자동 종료 방지 Enter 입력\n");
 	getchar();
 	return 0;
 }
@@ -65,10 +65,10 @@ int main()
 void buildHeap( HEAP* heap )
 {
 	int i ;
-	//���γ��带 ���� �θ����� ������ �����̹Ƿ� ��ü/2�� �� �κ� ���� heap�� ������.
+	//내부노드를 갖는 부모부터 말썽이 시작이므로 전체/2를 한 부분 부터 heap을 만든다.
 	for( i = HEAP_LEN/2; i>=1; i-- )
 	{
-		//downHeap�� ȣ���Ѵ�. downHeap�� ���������� �����ȴ�.
+		//downHeap을 호출한다. downHeap은 재귀적으로 실행된다.
 		downHeap(heap, i , HEAP_LEN);
 	}
 }
@@ -80,19 +80,19 @@ void downHeap( HEAP* heap , int i , int last )
 	int right = 2*i + 1;
 	int greater = 0;
 	int tmpKey = 0 , tmpElement = 0;
-	//left ���� �Ķ����ͷ� �־��� last ���� ũ�ٸ� �׳� ���� (�ƴϸ� �迭 ������ �Ѿ�� ���ܰ� �߻�)
+	//left 값이 파라미터로 주어진 last 보다 크다면 그냥 종료 (아니면 배열 범위를 넘어서는 예외가 발생)
 	if( left > last )
 		return ;
-	//greater�� left �� ����
+	//greater에 left 값 저장
 	greater = left;
-	//right�� last���� �۰ų� ���� ���� �б�����
+	//right가 last보다 작거나 같을 때만 분기실행
 	if( right <= last )
 		if( heap[right].key > heap[greater].key )
-			//right�� �ε����� �ϴ� key�� greater�� �ε����� �ϴ� key���� ũ�ٸ�,
-			greater = right;//greater�� right���� ����
+			//right를 인덱스로 하는 key가 greater를 인덱스로 하는 key보다 크다면,
+			greater = right;//greater에 right값을 저장
 	if( heap[i].key >= heap[greater].key )
 		return ;
-	//���� ��ȯ�Ѵ�.
+	//값을 교환한다.
 	tmpKey = heap[i].key;
 	tmpElement = heap[i].element;
 
@@ -101,7 +101,7 @@ void downHeap( HEAP* heap , int i , int last )
 
 	heap[greater].key = tmpKey;
 	heap[greater].element = tmpElement;
-	//downHeap�Լ��� ���������� ȣ��
+	//downHeap함수를 재귀적으로 호출
 	downHeap(heap , greater , last );
 }
 /***************heapSort function******************************/
@@ -110,9 +110,9 @@ void heapSort( HEAP* heap )
 	//local variable
 	int i;
 	int tmpKey = 0 , tmpElement = 0;
-	//heap�� �����Ѵ�.
+	//heap을 생성한다.
 	buildHeap(heap);
-	//���������� ���� �ö󰡸� heap sort
+	//마지막부터 위로 올라가며 heap sort
 	for( i = HEAP_LEN-1; i >=2 ; i-- )
 	{
 		tmpKey = heap[1].key;
@@ -123,7 +123,7 @@ void heapSort( HEAP* heap )
 
 		heap[i].key = tmpKey;
 		heap[i].element = tmpElement;
-		downHeap(heap,1,i-1);//��ȯ �� downHeap ȣ��
+		downHeap(heap,1,i-1);//교환 후 downHeap 호출
 	}
 	return ;
 }

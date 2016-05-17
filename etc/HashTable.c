@@ -45,7 +45,7 @@ int main()
 	char inputFunction = 'NULL';
 	int key = 0 , element = 0;
 	int check = 0;
-	initBucket(hashTable);//�ʱ�ȭ
+	initBucket(hashTable);//초기화
 	insertItem(hashTable , 34 , 34);
 	insertItem(hashTable , 67 , 67);
 	insertItem(hashTable , 78 , 78);
@@ -68,7 +68,7 @@ int main()
 
 	while( inputFunction != 'q' )
 	{
-		printf("�Է� ���� ex ) f 14 0 | i 56 5 | r 4 0 \n");
+		printf("입력 방식 ex ) f 14 0 | i 56 5 | r 4 0 \n");
 		scanf("%c %d %d" , &inputFunction , &key , &element);
 		switch ( inputFunction )
 		{
@@ -77,7 +77,7 @@ int main()
 			{
 				printf(" No Such Key \n" );
 			}
-			printf("ã�� key�� ���Ҵ� %d �Դϴ�. \n",findElement(hashTable , key));
+			printf("찾은 key의 원소는 %d 입니다. \n",findElement(hashTable , key));
 			break;
 		case 'i' :
 			check = insertItem(hashTable , key , element);
@@ -91,7 +91,7 @@ int main()
 			}
 			break;
 		case 'r' :
-			printf("������ key �� element : %d \n" , removeElement( hashTable , key) );
+			printf("삭제한 key 의 element : %d \n" , removeElement( hashTable , key) );
 			break;
 		case 'q' :
 			break;
@@ -106,21 +106,21 @@ int findElement(HASH_TABLE* hashTable,int  key)
 	int hashKey = 0;
 	int investigate = 0;
 
-	hashKey = hash(key);//Ű�� �ؽ�
+	hashKey = hash(key);//키를 해싱
 
 	while(investigate < ARRAY_LEN)
 	{
-		int findBucket = getNextBucket(hashKey, investigate);//�ڸ� ����
+		int findBucket = getNextBucket(hashKey, investigate);//자리 선정
 		if( hashTable[findBucket].tag == (isEmpty(hashTable , findBucket) ))
 		{
-			return NO_SUCH_KEY;// ��ã�Ҵ�.
+			return NO_SUCH_KEY;// 못찾았다.
 		}
 		else if( key == hashTable[findBucket].key )
 		{
-			return hashTable[findBucket].element;//ã���� element ����
+			return hashTable[findBucket].element;//찾으면 element 리턴
 		}
 		else
-			investigate += 1;//�ڸ� ã�� ��ȸ
+			investigate += 1;//자리 찾아 순회
 	}
 	return NO_SUCH_KEY;
 }
@@ -128,12 +128,12 @@ int insertItem(HASH_TABLE* hashTable ,int key , int element)
 {
 	int hashKey = 0;
 	int investigate = 0;
-	hashKey = hash(key);//Ű�� �ؽ�
+	hashKey = hash(key);//키를 해싱
 
 	while( investigate < ARRAY_LEN )
 	{
-		int findBucket = getNextBucket(hashKey , investigate);//�ڸ� ����
-		if( (isEmpty(hashTable , findBucket) ) )//�����ٸ� - �����ٴ� ���� tag�� 0 �̰ų� available �̸�
+		int findBucket = getNextBucket(hashKey , investigate);//자리 선정
+		if( (isEmpty(hashTable , findBucket) ) )//비었다면 - 비었다는 것은 tag가 0 이거나 available 이면
 		{
 			hashTable[findBucket].key = key;
 			hashTable[findBucket].element = element;
@@ -155,24 +155,24 @@ int removeElement(HASH_TABLE * hashTable , int key )
 
 	while ( investigate < ARRAY_LEN )
 	{
-		int findBucket = getNextBucket(key , investigate);//�ڸ� ����
-		if( hashTable[findBucket].key == key )//�ش� �ڸ� ã����
+		int findBucket = getNextBucket(key , investigate);//자리 선정
+		if( hashTable[findBucket].key == key )//해당 자릴 찾으면
 		{
-			deactivate(hashTable, findBucket);//��ũ ǥ��
-			del_element = hashTable[findBucket].element;//���� �� ����
-			hashTable[investigate].element = 0;//���Ҹ� 0���� �ʱ�ȭ
-			return del_element;//��ȯ
+			deactivate(hashTable, findBucket);//마크 표시
+			del_element = hashTable[findBucket].element;//요소 값 저장
+			hashTable[investigate].element = 0;//요소를 0으로 초기화
+			return del_element;//반환
 		}
 		else
 			investigate += 1;
 	}
 	return false;
 }
-int getNextBucket(int hashValue , int investigate)//collision resolution ���� ������
+int getNextBucket(int hashValue , int investigate)//collision resolution 선형 조사법
 {
 	return (hashValue + investigate) % ARRAY_LEN;
 }
-int initBucket(HASH_TABLE * hashTable)//�ʱ�ȭ �۾�
+int initBucket(HASH_TABLE * hashTable)//초기화 작업
 {
 	int i ;
 	for( i = 0; i < ARRAY_LEN; i++)
@@ -186,31 +186,31 @@ int initBucket(HASH_TABLE * hashTable)//�ʱ�ȭ �۾�
 
 void overFlowException()
 {
-	printf(" ���� Hash-Table ������ �����մϴ�. \n");
+	printf(" 모든 Hash-Table 공간이 부족합니다. \n");
 }
 int isEmpty(HASH_TABLE * hashTable, int spot)
 {
 	if( hashTable[spot].tag == 0 || (isDeactivated(hashTable , spot) == true) )
 	{
 		return true;
-	}//�����ų� ������ ��
+	}//비었거나 삭제된 셀
 	else
-		//������ ����
+		//데이터 존재
 		return false;
 }
-int deactivate(HASH_TABLE * hashTable , int spot)//�����ɶ� ��ũ ǥ��
+int deactivate(HASH_TABLE * hashTable , int spot)//삭제될때 마크 표시
 {
 	hashTable[spot].key = AVAILAVLE;
 	return true;
 }
-int isDeactivated(HASH_TABLE * hashTable , int spot)//�����Ǿ��� �ڸ����� Ȯ��
+int isDeactivated(HASH_TABLE * hashTable , int spot)//삭제되었던 자리인지 확인
 {
 	if(hashTable[spot].key == AVAILAVLE)
 		return true;
 	else
 		return false;
 }
-int hash(int key)//�Է� �� Ű���� ����
+int hash(int key)//입력 된 키값을 나눔
 {
 	return key/2;
 }

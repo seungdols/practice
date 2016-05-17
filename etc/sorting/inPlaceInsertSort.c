@@ -45,19 +45,19 @@ int main()
 		{1		, 20}
 	};
 	printf("Insert Sorting\n");
-	printf("���� ��\n");
-	printList(queue);//�迭 ����
+	printf("정렬 전\n");
+	printList(queue);//배열 출력
 	inPlaceInsertSort(queue);
-	printf("���� ��\n");
+	printf("정렬 후\n");
 	printList(queue);
-	printf("�ڵ� ���� ���� Enter �Է�\n");
+	printf("자동 종료 방지 Enter 입력\n");
 	getchar();
 
 	return 0;
 }
-/****************************�ʱ�ȭ �Լ�*************************************/
+/****************************초기화 함수*************************************/
 void iniList(PRIORITY_QUEUE * queue)
-{//�̹� ���뿡���� ������ ������ ���������ϴ�.
+{//이번 내용에서는 쓸모가 없지만 만들었습니다.
 	int i = 0;
 
 	for( i = 0 ; i < QUEUE_LEN; i++)
@@ -69,18 +69,18 @@ void iniList(PRIORITY_QUEUE * queue)
 /*********************Insert Sorting Function*******************************/
 void inPlaceInsertSort(PRIORITY_QUEUE * queue)
 {
-	//key �� element�� �ӽ÷� ���� �� ����
+	//key 와 element를 임시로 저장 할 변수
 	int tmpKey = 0 , tmpElement = 0;
 	//loop control
 	int i , j;
-	//�ܺδ� 0 to QUEUE_LEN
+	//외부는 0 to QUEUE_LEN
 	for( i = 0; i < QUEUE_LEN-1; i++)
 	{
-		//j�� i�� loop ��ȯ���� �ʱ�ȭ�� �Ѵ�.
+		//j는 i로 loop 순환마다 초기화를 한다.
 		j = i;
-		while(j >= 0)//j�� 0 ���� ũ�ų� ������ ������ loop ��ȯ
+		while(j >= 0)//j가 0 보다 크거나 같을때 까지만 loop 순환
 		{
-			if(queue[j].key > queue[j+1].key)//���� �� ���� ���� ���� �� ũ�� ���� ���� ���� �� �ڸ� ��ȯ.
+			if(queue[j].key > queue[j+1].key)//다음 값 보다 이전 값이 더 크면 다음 값과 이전 값 자리 교환.
 			{
 				tmpKey = queue[j+1].key;
 				tmpElement = queue[j+1].element;
@@ -90,9 +90,9 @@ void inPlaceInsertSort(PRIORITY_QUEUE * queue)
 
 				queue[j].key = tmpKey;
 				queue[j].element = tmpElement;
-				j--;//j�� -1�� ���־��� loop �� �����ȴ�.
+				j--;//j를 -1씩 해주어야 loop 가 종료된다.
 			}
-			else//���� ���� �� ������ ������ ������ �����Ƿ� loop Ż��
+			else//현재 값이 더 작으면 비교할 이유가 없으므로 loop 탈출
 			{
 				break;
 			}

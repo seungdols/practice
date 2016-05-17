@@ -22,7 +22,7 @@ int main()
 	clock_t start , finish;
 	int * arr = (int*)malloc(sizeof(int) * ARRLEN ) ;
 	random(arr);
-	//�Լ� ȣ��
+	//함수 호출
 
 	start = clock();
 	decisiveQuickSort(arr , 0 , ARRLEN-1);
@@ -34,7 +34,7 @@ int main()
 	//}
 	//printf("\n");
 
-	printf("�ڵ� ���� ���� Enter �Է� \n");
+	printf("자동 종료 방지 Enter 입력 \n");
 	getchar();
 	return 0;
 }
@@ -53,7 +53,7 @@ void random(int arr[])
 void decisiveQuickSort(int arr[] , int l , int r )
 {
 	int pivot;
-	//1���� 0�̸� ���� �ǵ���.
+	//1개나 0이면 종료 되도록.
 	if( l >= r )
 		return;
 
@@ -67,13 +67,13 @@ int inPlaceDeciviePartition(int arr[] , int l , int r )
 	int p ;
 	int i ,j;
 
-	//���� ���� ����
-	//������ �������� ������ ���Ҹ� pivot ������ ���´�.
+	//기준 원소 저장
+	//결정적 퀵정렬은 마지막 원소를 pivot 값으로 잡는다.
 	p = arr[r];
 
 	i = l;
 	j = r - 1;
-	//���ǿ� ���� ��ġ ���� �ʴ� �͵��� ��ȯ
+	//조건에 따라 일치 하지 않는 것들을 교환
 	while( i <= j )
 	{
 		while( i<= j && arr[i] <= p )
@@ -86,11 +86,11 @@ int inPlaceDeciviePartition(int arr[] , int l , int r )
 		}
 		if( i < j )
 		{
-			//���� ��ȯ
+			//원소 교환
 			swapArrElement(&arr[i] , &arr[j] );
 		}
 	}
-	//���Ҹ� �ٽ� �ٲ۴�.
+	//원소를 다시 바꾼다.
 	swapArrElement(&arr[i] , &arr[r] );
 
 	return i;

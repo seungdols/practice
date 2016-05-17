@@ -115,7 +115,7 @@ void printArr(int arr[])
 	int i ;
 	for( i = 0; i < ARRLEN; i++)
 	{
-		printf(" %5d��° key : %5d  \n", i ,arr[i] );
+		printf(" %5d번째 key : %5d  \n", i ,arr[i] );
 	}
 	printf("\n");
 }

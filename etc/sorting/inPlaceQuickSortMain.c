@@ -21,13 +21,13 @@ int main()
 	clock_t start , finish;
 	int * arr = (int*) malloc ( sizeof(int) * ARRLEN );
 	random(arr);
-	//�Լ� ȣ��
+	//함수 호출
 	start = clock();
 	inPlaceQuickSort(arr , 0 , ARRLEN-1);
 	finish = clock();
 	printf( " %f \n" , ((double)(finish - start))/CLOCKS_PER_SEC);
 
-	printf("�ڵ� ���� ���� Enter �Է� \n");
+	printf("자동 종료 방지 Enter 입력 \n");
 	getchar();
 	return 0;
 }
@@ -47,7 +47,7 @@ void inPlaceQuickSort(int arr[] , int l , int r )
 {
 	int k = ( l + r )/2;
 	int pivot;
-	//1���� 0�̸� ���� �ǵ���.
+	//1개나 0이면 종료 되도록.
 	if( l >= r )
 		return;
 
@@ -60,14 +60,14 @@ int inPlacePartition(int arr[] , int l , int r , int k)
 {
 	int p ;
 	int i ,j;
-	//���� ���� ����
+	//기준 원소 저장
 	p = arr[k];
-	//���� ���Ҹ� �������� ������.
+	//기준 원소를 마지막에 숨긴다.
 	swapArrElement(&arr[k] , &arr[r] );
 
 	i = l;
 	j = r - 1;
-	//���ǿ� ���� ��ġ ���� �ʴ� �͵��� ��ȯ
+	//조건에 따라 일치 하지 않는 것들을 교환
 	while( i <= j )
 	{
 		while( i<= j && arr[i] <= p )
@@ -83,7 +83,7 @@ int inPlacePartition(int arr[] , int l , int r , int k)
 			swapArrElement(&arr[i] , &arr[j] );
 		}
 	}
-	//���Ҹ� �ٽ� �ٲ۴�.
+	//원소를 다시 바꾼다.
 	swapArrElement(&arr[i] , &arr[r] );
 
 	return i;
