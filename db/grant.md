@@ -1,0 +1,21 @@
+## DB 권한 부여하기
+
+```sql
+
+--한 번에 테이블 조작에 대한 권한 부여
+GRANT ALL ON TABLE_NAME TO USER_NAME;
+
+--테이블 조작에 대한 권한 각 각 부여
+GRANT SELECT ON TABLE_NAME TO USER_NAME;
+GRANT UPDATE ON TABLE_NAME TO USER_NAME;
+GRANT DELETE ON TABLE_NAME TO USER_NAME;
+GRANT INSERT ON TABLE_NAME TO USER_NAME;
+
+--함수 실행 권한 부여하기
+GRANT EXECUTE ON TABLE_NAME TO USER_NAME;
+
+--SYNONYM 생성하기
+--테이블을 별칭으로 사용할 수 있다.
+CREATE SYNONYM 이름 FOR 계정.테이블명
+
+```
