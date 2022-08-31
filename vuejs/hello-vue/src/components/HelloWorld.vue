@@ -1,17 +1,21 @@
+
 <template>
   <div id="hello">
     <h1>{{ title }}</h1>
 
     <ol>
-      <li v-for="todo in todos" v-bind:key="todo.text">
-        {{ todo.text }}
-      </li>
+      <TodoItem v-for="todo in todos" v-bind:key="todo.text" v-bind:todo="todo" />
     </ol>
   </div>
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue'
 export default {
+
+  components: {
+    TodoItem
+  },
 
   data() {
     return {
