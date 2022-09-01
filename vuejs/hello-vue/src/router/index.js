@@ -20,6 +20,11 @@ const routes = [
     path: '/databinding',
     name: 'databinding',
     component: () => import(/* webpackChunkName: "databinding" */ '../components/DataBinding.vue')
+  },
+  { 
+    path: '/databindingInput',
+    name: 'databindingInput',
+    component: () => import(/* webpackChunkName: "databinding" */ '../components/DataBindingInputText.vue')
   }
 ]
 
