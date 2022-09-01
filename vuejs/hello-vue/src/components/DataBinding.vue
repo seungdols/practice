@@ -1,6 +1,7 @@
 <template>
     <h1>Hello, {{ title }}</h1>
     <div v-html="htmlString"></div>
+    <div>{{htmlString}}</div>
 </template>
 
 <script>
