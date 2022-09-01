@@ -6,7 +6,10 @@
     <ol>
       <TodoItem v-for="todo in todos" v-bind:key="todo.text" v-bind:todo="todo" />
     </ol>
-    <p>{{checkTodo}}</p>
+    <p>{{ checkTodo }}</p>
+    <button @click="modifyTitle">
+      Modify Title
+    </button>
   </div>
 </template>
 
@@ -34,8 +37,23 @@ export default {
   computed: {
     checkTodo() {
       return this.todos.length > 0 ? 'Remain Todo' : 'Nothing...'
+    },
+    changeTitle: {
+      get() {
+        return this.title
+      },
+      set(newValue) {
+        this.title = newValue
+      }
+    },
+  },
+  methods: {
+    modifyTitle() {
+      this.changeTitle = 'Hello, Seungdols'
     }
   }
 
+
 }
+
 </script>
