@@ -6,6 +6,7 @@
     <ol>
       <TodoItem v-for="todo in todos" v-bind:key="todo.text" v-bind:todo="todo" />
     </ol>
+    <p>{{checkTodo}}</p>
   </div>
 </template>
 
@@ -28,6 +29,11 @@ export default {
         { text: 'Learn Rust' },
         { text: 'Learn Python' },
       ]
+    }
+  },
+  computed: {
+    checkTodo() {
+      return this.todos.length > 0 ? 'Remain Todo' : 'Nothing...'
     }
   }
 
