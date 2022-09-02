@@ -4,6 +4,8 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/databinding">Data Binding</router-link> | 
     <router-link to="/databindingInput">Data BindingInput</router-link> | 
+    <router-link to="/computed">Computed</router-link> | 
+    <router-link to="/watch">Watch</router-link> | 
   </nav>
   <router-view/>
 </template>

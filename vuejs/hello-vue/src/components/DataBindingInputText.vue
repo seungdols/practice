@@ -53,6 +53,10 @@
             <option value="부산">부산</option>
             <option value="제주">제주</option>
         </select>
+        <br />
+        <input @keyup.enter="submit" />
+        <input @keyup.alt.enter="clear" />
+        <input @click.ctrl="ctrlClick" />
     </div>
 </template>
 <script>

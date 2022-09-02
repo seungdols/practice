@@ -24,7 +24,17 @@ const routes = [
   { 
     path: '/databindingInput',
     name: 'databindingInput',
-    component: () => import(/* webpackChunkName: "databinding" */ '../components/DataBindingInputText.vue')
+    component: () => import(/* webpackChunkName: "databindingInput" */ '../components/DataBindingInputText.vue')
+  },
+  { 
+    path: '/computed',
+    name: 'computed',
+    component: () => import(/* webpackChunkName: "computed" */ '../components/ComputedSample.vue')
+  },
+  { 
+    path: '/watch',
+    name: 'watch',
+    component: () => import(/* webpackChunkName: "watch" */ '../components/WatchSample.vue')
   }
 ]
 
