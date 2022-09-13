@@ -45,6 +45,11 @@ const routes = [
     path: '/nested',
     name: 'nested',
     component: () => import(/* webpackChunkName: "nested" */ '../views/NestedComponent.vue')
+  },
+  { 
+    path: '/parent',
+    name: 'parent',
+    component: () => import(/* webpackChunkName: "parent" */ '../views/ParentComponent.vue')
   }
 ]
 
