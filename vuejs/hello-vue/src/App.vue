@@ -6,6 +6,7 @@
     <router-link to="/databindingInput">Data BindingInput</router-link> | 
     <router-link to="/computed">Computed</router-link> | 
     <router-link to="/watch">Watch</router-link> | 
+    <router-link to="/dataBindingList">dataBindingList</router-link> | 
   </nav>
   <router-view/>
 </template>

@@ -35,6 +35,11 @@ const routes = [
     path: '/watch',
     name: 'watch',
     component: () => import(/* webpackChunkName: "watch" */ '../components/WatchSample.vue')
+  },
+  { 
+    path: '/dataBindingList',
+    name: 'dataBindingList',
+    component: () => import(/* webpackChunkName: "dataBindingList" */ '../components/DataBindingList.vue')
   }
 ]
 
