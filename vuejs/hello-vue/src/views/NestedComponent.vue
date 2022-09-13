@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PageTitle :title="title" />
+        <PageTitle>{{title}}</PageTitle>
     </div>
 </template>
 <script>
