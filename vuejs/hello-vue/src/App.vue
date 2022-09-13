@@ -9,6 +9,7 @@
     <router-link to="/dataBindingList">dataBindingList</router-link> | 
     <router-link to="/nested">Nested</router-link> | 
     <router-link to="/parent">Parent</router-link> | 
+    <router-link to="/provideinject">Provide/Inject</router-link> | 
   </nav>
   <router-view/>
 </template>

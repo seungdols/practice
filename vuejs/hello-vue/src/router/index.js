@@ -50,6 +50,11 @@ const routes = [
     path: '/parent',
     name: 'parent',
     component: () => import(/* webpackChunkName: "parent" */ '../views/ParentComponent.vue')
+  },
+  { 
+    path: '/provideinject',
+    name: 'provideinject',
+    component: () => import(/* webpackChunkName: "provideinject" */ '../views/ProvideInject.vue')
   }
 ]
 
