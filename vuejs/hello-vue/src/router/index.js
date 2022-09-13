@@ -40,6 +40,11 @@ const routes = [
     path: '/dataBindingList',
     name: 'dataBindingList',
     component: () => import(/* webpackChunkName: "dataBindingList" */ '../components/DataBindingList.vue')
+  },
+  { 
+    path: '/nested',
+    name: 'nested',
+    component: () => import(/* webpackChunkName: "nested" */ '../views/NestedComponent.vue')
   }
 ]
 

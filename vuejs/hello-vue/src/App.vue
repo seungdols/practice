@@ -7,6 +7,7 @@
     <router-link to="/computed">Computed</router-link> | 
     <router-link to="/watch">Watch</router-link> | 
     <router-link to="/dataBindingList">dataBindingList</router-link> | 
+    <router-link to="/nested">Nested</router-link> | 
   </nav>
   <router-view/>
 </template>
